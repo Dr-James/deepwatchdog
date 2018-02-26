@@ -1,0 +1,25 @@
+from django.db import models
+
+
+# Create your models here.
+class User(models.Model):
+    username = models.CharField(max_length=200, default="testName")
+    password = models.CharField(max_length=200, default="testPass")
+    
+    def __str__(self):
+        return self.username
+
+    def get_user():
+        return User.objects.get()
+
+defaultUser = 1
+class Picture(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=User.get_user())
+    label = models.CharField(max_length=200, default="defaultLabel")
+    picture = models.ImageField(upload_to = 'media/', default = 'media/no-img.jpg')
+
+    
+
+
+
+
