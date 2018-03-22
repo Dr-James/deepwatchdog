@@ -1,5 +1,4 @@
 from django.http import HttpResponse
-from django.shortcuts import render
 from polls.models import Picture, User
 
 
@@ -10,7 +9,7 @@ def index(request):
 
 def picture(request, picture_id):
     image = Picture.objects.get(id=picture_id)
-    return render(request, "polls/picture_template.html", {'picture': image})
+    return HttpResponse(image.picture.url)
 
 
 #user_id is actually the number of the picture, which is why we must calculate the correct id of the user of that picture.
